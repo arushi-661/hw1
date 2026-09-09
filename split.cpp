@@ -16,8 +16,24 @@ the function below should be the only one in this file.
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  if (in == nullptr){
+    odds = nullptr; 
+    evens = nullptr; 
+    return; 
+  }
+
+  Node* curr = in; 
+  in = in->next; 
+
+  split(in, odds, evens); //split the remaining nodes after detaching first
+ 
+  if (curr->value % 2 != 0){
+     curr->next = odds; 
+     odds = curr; 
+  } else {
+    curr->next = evens; 
+    evens = curr; 
+  }
 }
 
 /* If you needed a helper function, write it here */
